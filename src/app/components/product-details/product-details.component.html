@@ -1,0 +1,28 @@
+<p-dialog 
+[(visible)]="visible"
+[modal]="true"
+[style]="{width: '90vw', maxWidth: '800px'}"
+[draggable]="false"
+[resizable]="false"
+(onHide)="hide.emit()"
+>
+<ng-template pTemplate="header">
+  <h2>{{product?.title}}</h2>
+</ng-template>
+
+<div class="grid">
+  <div class="col-12 md:col-6">
+    <img [src]="product?.thumbnail" [alt]="product?.title" class="w-full">
+  </div>
+  <div class="col-12 md:col-6">
+    <p class="description">{{product?.description}}</p>
+    <p class="price">Price: ${{product?.price}}</p>
+    <p-rating [ngModel]="product?.rating" [readonly]="true" [cancel]="false"></p-rating>
+    <p class="category">Category: {{product?.category}}</p>
+  </div>
+</div>
+
+<ng-template pTemplate="footer">
+  <button pButton label="Close" (click)="hide.emit()"></button>
+</ng-template>
+</p-dialog>

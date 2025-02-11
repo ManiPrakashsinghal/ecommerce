@@ -1,0 +1,26 @@
+
+<div class="grid">
+  @if (!error) {
+    @for (product of products; track product.id) {
+      <div class="col-12 md:col-4 lg:col-3 p-2">
+        <div class="product-card p-3 border-round surface-card">
+          <h3>{{ product.title }}</h3>
+          <p class="price">${{ product.price }}</p>
+          <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+          <button pButton (click)="productSelect.emit(product)" label="View Details"></button>
+        </div>
+      </div>
+    }
+  } @else {
+    <div class="col-12 text-center">
+      <p class="error-message">{{ error }}</p>
+      <button pButton label="Retry" (click)="loadMore.emit()"></button>
+    </div>
+  }
+
+  @if (loading) {
+    <div class="col-12 text-center">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+  }
+</div>

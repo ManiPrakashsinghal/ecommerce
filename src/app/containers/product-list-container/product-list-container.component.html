@@ -1,0 +1,25 @@
+<div class="grid">
+    <div class="col-12 md:col-3">
+      <app-filter-panel
+        [categories]="categories"
+        (filterChange)="onFilterChange($event)"
+      ></app-filter-panel>
+    </div>
+    <div class="col-12 md:col-9">
+      <app-product-list
+        [products]="filteredProducts"
+        [loading]="loading"
+        [error]="error"
+        (loadMore)="loadMoreProducts()"
+        (productSelect)="onProductSelect($event)"
+      ></app-product-list>
+    </div>
+  </div>
+
+  @if (selectedProduct) {
+    <app-product-details
+      [product]="selectedProduct"
+      [visible]="detailsVisible"
+      (hide)="closeDetails()"
+    ></app-product-details>
+  }

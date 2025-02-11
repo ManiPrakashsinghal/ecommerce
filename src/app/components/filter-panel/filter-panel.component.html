@@ -1,0 +1,57 @@
+<div class="filter-panel p-3 surface-card border-round">
+    <h3>Filters</h3>
+    
+    <div class="field">
+      <label>Category</label>
+      <p-dropdown 
+        [options]="categories"
+        [(ngModel)]="filters.category"
+        (onChange)="emitFilters()"
+        placeholder="Select Category"
+        class="w-full"
+      ></p-dropdown>
+    </div>
+
+    <div class="field">
+      <label>Price Range</label>
+      <p-slider 
+        [(ngModel)]="filters.priceRange" 
+        [range]="true"
+        [min]="0"
+        [max]="2000"
+        (onSlideEnd)="emitFilters()"
+        class="w-full"
+      ></p-slider>
+      <div class="flex justify-content-between">
+        <span>${{filters.priceRange[0]}}</span>
+        <span>${{filters.priceRange[1]}}</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Minimum Rating</label>
+      <p-rating 
+        [(ngModel)]="filters.rating"
+        (onRate)="emitFilters()"
+        [cancel]="true"
+      ></p-rating>
+    </div>
+
+    <div class="field">
+      <label>Sort By</label>
+      <p-dropdown 
+        [(ngModel)]="filters.sortField"
+        [options]="sortOptions"
+        (onChange)="emitFilters()"
+        class="w-full"
+      ></p-dropdown>
+    </div>
+
+    <div class="field">
+      <p-button 
+        label="Reset Filters"
+        (onClick)="resetFilters()"
+        styleClass="p-button-secondary w-full"
+      ></p-button>
+    </div>
+  </div>
